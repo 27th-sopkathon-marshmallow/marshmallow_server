@@ -19,6 +19,6 @@ db.Participate = require('./participate')(sequelize, Sequelize);
 
 /** user: room => participate */
 db.User.belongsToMany(db.Room, { through: 'Participate', as: 'Participated' });
-db.Room.belongsToMany(db.User, { through: 'Participate', as: 'Participant' });
+db.Room.belongsToMany(db.User, { through: 'Participate' });
 
 module.exports = db;
