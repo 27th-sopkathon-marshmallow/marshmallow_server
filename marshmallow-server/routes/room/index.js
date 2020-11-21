@@ -8,6 +8,7 @@ const { User } = require('../../models');
 const { Room } = require('../../models')
 const user = require('../../models/user');
 const { stat } = require('fs');
+const { resolve } = require('url');
 
 // 방 생성하기
 router.post('/create', async (req, res) => {
@@ -64,6 +65,70 @@ router.post('/join', async (req, res) => {
   } catch(error) {
     console.error(error);
     return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.ROOM_JOIN_FAIL));
+  }
+})
+
+// 방 정보 가져오기
+router.get('/room/:id', async (req, res) => {
+  //1. parameter로 id값을 받아온다 (id값은 인덱스값)
+  const { id } = req.params;
+  try {
+      //2. id값이 유효한지 체크! 존재하지 않는 아이디면 NO_USER 반환
+      const room = await Room.findOne({
+          where: {
+              id: id,
+          },
+          attributes: ['title', 'startTime', 'limitTime'],
+          include: [{
+            model: User,
+            as: 'Participant',
+            attributes: 'nickname'
+          }]
+      });
+
+      if (!room) {
+          console.log('존재하지 않는 방입니다');
+          return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ROOM));
+      }
+
+
+      //3. status:200 message: READ_USER_SUCCESS, id email, userName 반환
+      return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.ROOM_READ_SUCCESS, room));
+
+  } catch (error) {
+      console.error(error);
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.ROOM_READ_FAIL));
+  }
+})
+
+// 방 결과 정보 가져오기
+router.get('/room/:id/finish', async (req, res) => {
+  //1. parameter로 id값을 받아온다 (id값은 인덱스값)
+  const { id } = req.params;
+  try {
+      //2. id값이 유효한지 체크! 존재하지 않는 아이디면 NO_USER 반환
+      const room = await Room.findOne({
+          where: {
+              id: id,
+          },
+          include: [{
+            model: User,
+            as: 'Participant',
+            attributes: ['nickname','percent']
+          }]
+      });
+
+      if (!room) {
+          console.log('존재하지 않는 방입니다');
+          return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ROOM));
+      }
+
+      //3. status:200 message: READ_USER_SUCCESS, id email, userName 반환
+      return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.ROOM_RESULT_READ_SUCCESS, room));
+
+  } catch (error) {
+      console.error(error);
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.ROOM_RESULT_READ_FAIL));
   }
 })
 

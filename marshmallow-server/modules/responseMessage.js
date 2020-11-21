@@ -7,7 +7,10 @@ module.exports = {
   ROOM_CREATE_SUCCESS: "방 생성 성공",
   ROOM_READ_SUCCESS: "방 조회 성공",
   ROOM_JOIN_SUCCESS: "방 코드로 들어가기 조회성공",
+  ROOM_RESULT_READ_SUCCESS: "방 결과 조회 성공",
+  ROOM_READ_FAIL: "방 조회 실패",
   ROOM_JOIN_FAIL: "방 코드로 들어가기 실패",
+  ROOM_RESULT_READ_FAIL: "방 결과 조회 실패",
   NO_ROOM: "존재하지 않는 방입니다",
   /* 회원가입 */
   SIGN_UP_SUCCESS: "회원가입성공",
