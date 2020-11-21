@@ -24,7 +24,7 @@ db.Post.belongsToMany(db.User, { through: "Like", as: "Liker" });
 
 ## ERD
 
-![ERD]()
+<img src="https://user-images.githubusercontent.com/59338503/99882748-2ab93800-2c66-11eb-958a-7a39c748dca9.png" alt="ERD" style="zoom:40%;" />
 
 ## 기능 소개
 
