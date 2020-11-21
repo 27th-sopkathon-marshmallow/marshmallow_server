@@ -9,22 +9,18 @@
 ## sequelize Model
 
 ```javascript
-db.User = require("./user")(sequelize, Sequelize);
-db.Post = require("./post")(sequelize, Sequelize);
-db.Like = require("./like")(sequelize, Sequelize);
+db.User = require('./user')(sequelize, Sequelize);
+db.Room = require('./room')(sequelize, Sequelize);
+db.Participate = require('./participate')(sequelize, Sequelize);
 
-/** 1 : N   User : Post */
-db.User.hasMany(db.Post, { onDelete: "cascade" });
-db.Post.belongsTo(db.User);
-
-/** N: M    User : Post => Like */
-db.User.belongsToMany(db.Post, { through: "Like", as: "Liked" });
-db.Post.belongsToMany(db.User, { through: "Like", as: "Liker" });
+/** user: room => participate */
+db.User.belongsToMany(db.Room, { through: 'Participate', as: 'Participated' });
+db.Room.belongsToMany(db.User, { through: 'Participate', as: 'Participant' });
 ```
 
 ## ERD
 
-![ERD]()
+<img src="https://user-images.githubusercontent.com/59338503/99882748-2ab93800-2c66-11eb-958a-7a39c748dca9.png" alt="ERD" style="zoom:40%;" />
 
 ## 기능 소개
 
