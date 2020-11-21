@@ -11,11 +11,10 @@ module.exports = (sequelize, DataTypes) => {
   },
   imageURL: {
     type: DataTypes.STRING(200),
-    allowNull: false,
+    allowNull: true,
   }
 }, {
     //model의 옵션을 지정하는 곳
     freezeTableName: true,
-    timestamps: false,
   });
 };
