@@ -34,7 +34,7 @@ router.post('/create', async (req, res) => {
       salt: salt,
     });
     console.log(user);
-    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.ROOM_CREATE_SUCCESS, { title: room.title, limitTime: room.limitTime, startTime: room.startTime, code: room.code }));
+    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.ROOM_CREATE_SUCCESS, { id: room.id, title: room.title, limitTime: room.limitTime, startTime: room.startTime, code: room.code }));
   } catch(error) {
     console.error(error);
     return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.SIGN_UP_FAIL));
@@ -69,7 +69,7 @@ router.post('/join', async (req, res) => {
 })
 
 // 방 정보 가져오기
-router.get('/room/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   //1. parameter로 id값을 받아온다 (id값은 인덱스값)
   const { id } = req.params;
   try {
@@ -82,7 +82,7 @@ router.get('/room/:id', async (req, res) => {
           include: [{
             model: User,
             as: 'Participant',
-            attributes: 'nickname'
+            attributes: ['nickname']
           }]
       });
 
@@ -102,7 +102,7 @@ router.get('/room/:id', async (req, res) => {
 })
 
 // 방 결과 정보 가져오기
-router.get('/room/:id/finish', async (req, res) => {
+router.get('/:id/finish', async (req, res) => {
   //1. parameter로 id값을 받아온다 (id값은 인덱스값)
   const { id } = req.params;
   try {
