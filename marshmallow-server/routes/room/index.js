@@ -81,10 +81,17 @@ router.get('/:id', async (req, res) => {
           attributes: ['title', 'startTime', 'limitTime'],
           include: [{
             model: User,
-            as: 'Participant',
+            // as: 'Participant',
             attributes: ['nickname', 'percent']
           }]
       });
+
+      /** json으로 property를 강제로 지워주는 것 */
+      room.Users.forEach(element => {
+        delete element.dataValues.Participate
+      })
+
+      console.log(room.dataValues);
 
       if (!room) {
           console.log('존재하지 않는 방입니다');
