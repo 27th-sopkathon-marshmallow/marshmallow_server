@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING(200),
     allowNull: false,
   },
+  code: {
+    type: DataTypes.STRING(200),
+    allowNull: false,
+  },
   salt: {
     type: DataTypes.STRING(200),
     allowNull: false,
