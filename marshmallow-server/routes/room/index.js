@@ -67,9 +67,9 @@ router.post('/join', async (req, res) => {
     return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.ROOM_JOIN_FAIL));
   }
 })
-/** */
+
 // 방 정보 가져오기
-router.get('/:id', async (req, res) => {
+router.get('/room/:id', async (req, res) => {
   //1. parameter로 id값을 받아온다 (id값은 인덱스값)
   const { id } = req.params;
   try {
@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
           include: [{
             model: User,
             as: 'Participant',
-            attributes: ['nickname', 'percent']
+            attributes: 'nickname'
           }]
       });
 
@@ -95,14 +95,14 @@ router.get('/:id', async (req, res) => {
       //3. status:200 message: READ_USER_SUCCESS, id email, userName 반환
       return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.ROOM_READ_SUCCESS, room));
 
-  } catch (error) {
+  } catch (error) { 
       console.error(error);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.ROOM_READ_FAIL));
   }
 })
 
 // 방 결과 정보 가져오기
-router.get('/:id/finish', async (req, res) => {
+router.get('/room/:id/finish', async (req, res) => {
   //1. parameter로 id값을 받아온다 (id값은 인덱스값)
   const { id } = req.params;
   try {
