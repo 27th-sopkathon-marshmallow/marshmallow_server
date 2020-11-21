@@ -82,45 +82,4 @@ router.post('/join', async (req, res) => {
   }
 })
 
-
-
-// 전체 유저 조회하기
-
-router.get('/', async(req, res) => {
-  try {
-    const users = await User.findAll({
-      attributes: ['id', 'email', 'userName'],
-    });
-    console.log(users);
-    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.MEMBER_READ_ALL_SUCCESS, users));
-  } catch(error) {
-    console.error(error);
-    return res.status(statusCode.BAD_REQUEST).send(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE);
-  }
-})
-
-// 특정 유저 조회하기
-router.get('/:id', async(req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await User.findOne({
-      where: {
-        id: id,
-      },
-      attributes: ['id', 'email', 'password'],
-    });
-
-    if (!user) {
-      console.log('존재하지 않는 id 입니당');
-      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
-    }
-    return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.MEMBER_READ_SUCCESS, user));
-  } catch(error) {
-    console.error(error);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR).send(statusCode.INTERNAL_SERVER_ERROR, responseMessage.NULL_VALUE);
-  }
-})
-
-
-
 module.exports = router;
