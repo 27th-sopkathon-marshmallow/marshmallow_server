@@ -9,7 +9,7 @@
 
 [📑 API Document](https://github.com/27th-sopkathon-marshmallow/marshmallow_server/wiki)
 
-## sequelize Model
+## Sequelize Model
 
 ```javascript
 db.User = require('./user')(sequelize, Sequelize);
@@ -32,6 +32,10 @@ db.Room.belongsToMany(db.User, { through: 'Participate', as: 'Participant' });
 - Cloud: **AWS**
   - **AWS EC2**
   - **AWS RDS**
+
+## Architecture
+
+<img src="https://user-images.githubusercontent.com/49272528/99889763-aed9e280-2c9b-11eb-8a2b-b6b8329d781f.png" width="800">
 
 
 ## 기능 소개
