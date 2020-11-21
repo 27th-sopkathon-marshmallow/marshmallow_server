@@ -1,12 +1,13 @@
-# Marshmallow🍭
-
-긍정적 중독을 활용한 의지 강화 서비스
+# 🍭 Marshmallow
 
 <img src=https://user-images.githubusercontent.com/49272528/99885909-ab366380-2c7b-11eb-8dd6-05a5c2bd5d5b.png width="1000">
 
+긍정적 중독을 활용한 의지 강화 서비스
+> 개발기간: 2020.11.21 - 2020.11.22
+
 ## API 명세서
 
-[api 링크](https://github.com/27th-sopkathon-marshmallow/marshmallow_server/wiki)
+[📑 API Document](https://github.com/27th-sopkathon-marshmallow/marshmallow_server/wiki)
 
 ## sequelize Model
 
@@ -22,7 +23,16 @@ db.Room.belongsToMany(db.User, { through: 'Participate', as: 'Participant' });
 
 ## ERD
 
-<img src="https://user-images.githubusercontent.com/59338503/99882748-2ab93800-2c66-11eb-958a-7a39c748dca9.png" alt="ERD" style="zoom:20%;" />
+<img src="https://user-images.githubusercontent.com/49272528/99889201-260c7800-2c96-11eb-995c-d5011abb621b.png" width="1000">
+
+## Develop Environment
+
+- Language: **Javascript**
+
+- Cloud: **AWS**
+  - **AWS EC2**
+  - **AWS RDS**
+
 
 ## 기능 소개
 
@@ -35,7 +45,7 @@ db.Room.belongsToMany(db.User, { through: 'Participate', as: 'Participant' });
 
 ## 팀원 소개
 
-marshmallow 팀의 멋쟁이 서버 개발자들입니다.👩🏻‍💻🤍
+**Marshmallow 팀의 멋쟁이 서버 개발자들입니다.👩🏻‍💻🤍**
 
 - [김지현](https://github.com/Jihyun247) - 방 정보 가져오기 (GET), 방 결과 정보 가져오기 (GET)
 - [안재은](https://github.com/JaeeunAhn) - 방 생성하기 (POST), 방 코드로 들어가기 (POST)
