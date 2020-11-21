@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
   },
   code: {
-    type: DataTypes.STRING(200),
+    type: DataTypes.STRING(10),
     allowNull: false,
   },
   salt: {
