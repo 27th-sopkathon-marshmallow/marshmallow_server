@@ -21,4 +21,5 @@ module.exports = {
 
   /* 서버에러 */
   INTERNAL_SERVER_ERROR: "서버 내부 오류",
+
 }
