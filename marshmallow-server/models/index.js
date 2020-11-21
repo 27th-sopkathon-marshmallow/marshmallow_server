@@ -13,4 +13,12 @@ if (config.use_env_variable) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.User = require('./user')(sequelize, Sequelize);
+db.Room = require('./room')(sequelize, Sequelize);
+db.Participate = require('./participate')(sequelize, Sequelize);
+
+/** user, room => participant */
+db.User.belongsToMany(db.Room, { through: 'Participate' });
+db.Room.belongsToMany(db.User, { through: 'Participate' });
+
 module.exports = db;
