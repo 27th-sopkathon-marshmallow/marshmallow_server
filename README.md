@@ -4,7 +4,7 @@
 
 ## API 명세서
 
-[api 링크](https://github.com/27th-sopkathon-marshmallow/marshmallow_server.wiki)
+[api 링크](https://github.com/27th-sopkathon-marshmallow/marshmallow_server/wiki)
 
 ## sequelize Model
 
